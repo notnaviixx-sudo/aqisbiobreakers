@@ -1,212 +1,236 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NutriCycle | Anaerobic Digestion</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BioBreakers | Innovation in Anaerobic Digestion</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --lavender: #d8b4e2;
+            --deep-plum: #3e2a35;
+            --dark-cocoa: #26160e; 
+            --rich-brown: #3d2b1f;
+            --accent: #9b6b9e;
+            --glass: rgba(255, 255, 255, 0.07);
+            --transition: all 0.3s ease;
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--dark-cocoa), var(--rich-brown), #4e342e);
+            color: #f5f0eb;
+            line-height: 1.6;
+        }
 
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+        nav {
+            position: fixed; width: 100%; padding: 1rem;
+            background: rgba(38, 22, 14, 0.95);
+            backdrop-filter: blur(10px);
+            display: flex; justify-content: center; z-index: 1000;
+            border-bottom: 1px solid rgba(216, 180, 226, 0.1);
+        }
+        nav a { color: var(--lavender); margin: 0 15px; text-decoration: none; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
 
-html {
-    scroll-behavior: smooth;
-}
+        section { padding: 100px 10%; max-width: 1200px; margin: 0 auto; text-align: center; }
+        
+        h1 { font-size: clamp(3.5rem, 10vw, 5.5rem); color: var(--lavender); margin-bottom: 0; text-shadow: 2px 2px 15px rgba(0,0,0,0.4); }
+        h2 { font-size: 2.5rem; color: var(--lavender); margin-bottom: 30px; }
+        .tagline { color: var(--accent); font-size: 1.4rem; margin-bottom: 40px; font-weight: 300; }
 
-body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #2b1a12, #4b2e39, #5d4037);
-    color: #f5f0eb;
-}
+        .card { background: var(--glass); padding: 35px; border-radius: 25px; border: 1px solid rgba(255,255,255,0.1); margin: 20px 0; transition: var(--transition); backdrop-filter: blur(5px); }
+        .card:hover { border-color: var(--lavender); transform: translateY(-5px); background: rgba(255, 255, 255, 0.1); }
 
-/* ===== NAVBAR ===== */
-nav {
-    position: fixed;
-    width: 100%;
-    background: rgba(43, 26, 18, 0.95);
-    padding: 18px;
-    text-align: center;
-    backdrop-filter: blur(8px);
-    z-index: 1000;
-}
+        /* Science Grid */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; text-align: left; }
+        .science-card h4 { color: var(--lavender); margin-bottom: 10px; border-bottom: 1px solid var(--accent); display: inline-block; }
 
-nav a {
-    color: #f5f0eb;
-    margin: 0 18px;
-    text-decoration: none;
-    font-weight: 500;
-    transition: 0.3s;
-}
+        /* Simulator Styles */
+        .sim-readout { background: rgba(0,0,0,0.3); padding: 20px; border-radius: 15px; border: 1px solid var(--accent); text-align: left; }
+        .stat-value { font-family: monospace; font-size: 1.8rem; color: #fff; text-shadow: 0 0 10px var(--lavender); }
 
-nav a:hover {
-    color: #d8b4e2;
-}
+        /* Inputs & Buttons */
+        input, textarea { width: 100%; padding: 15px; margin: 10px 0; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.2); color: white; }
+        input:focus { outline: none; border-color: var(--lavender); }
+        .btn { padding: 15px 40px; border-radius: 50px; background: var(--lavender); color: var(--dark-cocoa); border: none; font-weight: 700; cursor: pointer; transition: var(--transition); text-transform: uppercase; letter-spacing: 1px; }
+        .btn:hover { background: white; transform: scale(1.05); box-shadow: 0 0 20px rgba(216, 180, 226, 0.4); }
 
-/* ===== SECTIONS ===== */
-section {
-    padding: 120px 12%;
-    text-align: center;
-}
+        /* Gallery */
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 40px; }
+        .photo-slot { aspect-ratio: 16/9; background: rgba(0,0,0,0.3); border: 2px dashed var(--accent); border-radius: 20px; display: flex; align-items: center; justify-content: center; color: var(--lavender); font-style: italic; }
 
-h1 {
-    font-size: 48px;
-    margin-bottom: 20px;
-}
-
-h2 {
-    font-size: 36px;
-    margin-bottom: 25px;
-}
-
-.card {
-    background: rgba(255,255,255,0.08);
-    backdrop-filter: blur(12px);
-    padding: 35px;
-    border-radius: 20px;
-    box-shadow: 0 12px 40px rgba(0,0,0,0.4);
-    margin-top: 20px;
-    transition: 0.4s ease;
-}
-
-.card:hover {
-    transform: translateY(-10px);
-}
-
-/* ===== HERO ===== */
-#home {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.button {
-    display: inline-block;
-    margin-top: 30px;
-    padding: 14px 32px;
-    border-radius: 40px;
-    background: #6b4226;
-    color: white;
-    text-decoration: none;
-    transition: 0.3s ease;
-}
-
-.button:hover {
-    background: #8a5a3a;
-    transform: scale(1.05);
-}
-
-/* ===== FOOTER ===== */
-footer {
-    padding: 40px;
-    text-align: center;
-    background: rgba(30, 18, 12, 0.9);
-}
-</style>
+        footer { padding: 60px; text-align: center; background: #1a0f0a; opacity: 0.8; font-size: 0.85rem; border-top: 1px solid rgba(255,255,255,0.05); }
+    </style>
 </head>
-
 <body>
 
 <nav>
-<a href="#home">Home</a>
-<a href="#about">About</a>
-<a href="#how">How It Works</a>
-<a href="#benefits">Benefits</a>
-<a href="#research">Research</a>
-<a href="#prototype">Prototype</a>
-<a href="#impact">Impact</a>
-<a href="#contact">Contact</a>
+    <a href="#home">Home</a>
+    <a href="#science">Science</a>
+    <a href="#simulator">Simulator</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#join">Contact</a>
 </nav>
 
-<!-- HOME -->
 <section id="home">
-<h1>🌿 NutriCycle</h1>
-<p><b>Turning Household Food Waste into Liquid Fertilizer</b></p>
-<p>Food → Digester → Fertilizer → Plants 🌱</p>
-<a href="#about" class="button">Learn More</a>
+    <h1>BioBreakers</h1>
+    <p class="tagline">Molecular Waste Recovery & Innovation</p>
+    <div class="card">
+        <h3>Building the Optimized Tank System</h3>
+        <p>Our project focuses on a modular, acrylic glass tank design featuring <b>controlled magnetic stirring</b>, <b>real-time pH/Temperature monitoring</b>, and <b>safety water traps</b> to optimize the production of liquid fertilizer from food waste.</p>
+    </div>
 </section>
 
-<!-- ABOUT -->
-<section id="about">
-<h2>Our Mission</h2>
-<div class="card">
-<p>Over 1.3 billion tons of food are wasted globally each year.</p>
-<p>When food waste decomposes in landfills, it produces methane — a powerful greenhouse gas.</p>
-<p><b>NutriCycle’s goal:</b> Reduce food waste and create sustainable fertilizer using anaerobic digestion.</p>
-</div>
+<section id="science">
+    <h2>The Biological Core</h2>
+    <div class="grid">
+        <div class="card science-card">
+            <h4>1. Hydrolysis</h4>
+            <p>Breaking complex organic polymers into simple soluble monomers (sugars/amino acids).</p>
+        </div>
+        <div class="card science-card">
+            <h4>2. Acidogenesis</h4>
+            <p>Converting monomers into volatile fatty acids (VFAs) and CO₂.</p>
+        </div>
+        <div class="card science-card">
+            <h4>3. Acetogenesis</h4>
+            <p>Refining VFAs into acetic acid, the primary substrate for the final stage.</p>
+        </div>
+        <div class="card science-card">
+            <h4>4. Methanogenesis</h4>
+            <p>Microbes finalize the breakdown into methane and nutrient-rich liquid digestate.</p>
+        </div>
+    </div>
 </section>
 
-<!-- HOW IT WORKS -->
-<section id="how">
-<h2>How It Works</h2>
-<div class="card">
-<p><b>Hydrolysis:</b> Large food molecules break down.</p>
-<p><b>Acidogenesis:</b> Microbes convert compounds into organic acids.</p>
-<p><b>Methanogenesis:</b> Bacteria produce biogas and digestate.</p>
-<p><b>Digestate:</b> Nutrient-rich liquid fertilizer for plants.</p>
-</div>
+<section id="simulator">
+    <h2>Tank Lab Simulator</h2>
+    <div class="card grid" style="text-align: left;">
+        <div>
+            <h4 style="color: var(--lavender); margin-bottom: 15px;">Control Panel</h4>
+            <label>Organic Waste Input (kg):</label>
+            <input type="range" id="load" min="1" max="20" value="5" style="accent-color: var(--lavender); margin: 15px 0; width: 100%;">
+            <p id="loadDisplay" style="font-weight: bold; margin-bottom: 20px;">Current Load: 5kg</p>
+            
+            <button class="btn" id="simBtn" onclick="toggleSim()" style="width: 100%;">Initialize Digestion</button>
+            
+            <div id="impactStats" style="margin-top: 25px; padding: 15px; background: rgba(216, 180, 226, 0.05); border-radius: 15px; border: 1px solid rgba(216, 180, 226, 0.1);">
+                <p>🌿 <b>Est. Bio-Gold:</b> <span id="f">2.10</span> Liters</p>
+                <p>💨 <b>Carbon Offset:</b> <span id="c">12.5</span> kg CO₂e</p>
+            </div>
+        </div>
+
+        <div class="sim-readout">
+            <h4 style="color: var(--lavender); margin-bottom: 20px; border-bottom: 1px solid var(--accent);">Live Sensor Data</h4>
+            <div style="margin-bottom: 15px;">
+                <p style="font-size: 0.75rem; text-transform: uppercase; color: var(--accent);">pH Level (Acidity)</p>
+                <div class="stat-value" id="phDisplay">7.0</div>
+            </div>
+            <div style="margin-bottom: 15px;">
+                <p style="font-size: 0.75rem; text-transform: uppercase; color: var(--accent);">Temperature</p>
+                <div class="stat-value" id="tempDisplay">22.0°C</div>
+            </div>
+            <div>
+                <p style="font-size: 0.75rem; text-transform: uppercase; color: var(--accent);">Internal Pressure</p>
+                <div class="stat-value" id="psiDisplay">1.02 PSI</div>
+            </div>
+            <p id="simStatus" style="margin-top: 20px; color: var(--lavender); font-weight: bold; font-style: italic;">Status: System Idle</p>
+        </div>
+    </div>
 </section>
 
-<!-- BENEFITS -->
-<section id="benefits">
-<h2>Benefits & Sustainability</h2>
-<div class="card">
-<p>🌍 Reduces landfill waste and methane emissions.</p>
-<p>🌱 Produces nutrient-rich liquid fertilizer.</p>
-<p>🔄 Supports a circular economy: Waste → Soil → Plants → Food.</p>
-</div>
+<section id="gallery">
+    <h2>Research Gallery</h2>
+    <p>Visual logs of the BioBreaker prototype development.</p>
+    <div class="gallery">
+        <div class="photo-slot">Prototype Assembly</div>
+        <div class="photo-slot">Sensor Integration</div>
+        <div class="photo-slot">Final Digestate Result</div>
+    </div>
 </section>
 
-<!-- RESEARCH -->
-<section id="research">
-<h2>Research & Data</h2>
-<div class="card">
-<p>Studies show anaerobic digestion improves nutrient recovery and plant growth.</p>
-<p>This aligns with sustainability and environmental innovation goals.</p>
-</div>
-</section>
+<section id="join">
+    <div class="card" style="max-width: 700px; margin: 0 auto; position: relative;">
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--lavender);"></div>
+        <h2>Connect with BioBreakers</h2>
+        <p style="margin-bottom: 30px; opacity: 0.8;">Collaborate on our next anaerobic experiment.</p>
+        
+        <form id="contactForm" onsubmit="handleContact(event)">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                <input type="text" id="name" placeholder="Lab Lead Name" required>
+                <input type="email" id="email" placeholder="Contact Email" required>
+            </div>
+            <textarea id="msg" placeholder="Describe your inquiry or suggested parameters..." required style="height: 150px; resize: none;"></textarea>
+            <button type="submit" class="btn" style="width: 100%;">Initialize Transmission</button>
+        </form>
 
-<!-- PROTOTYPE -->
-<section id="prototype">
-<h2>Prototype Design</h2>
-<div class="card">
-<p>1. Collect food waste</p>
-<p>2. Place in sealed anaerobic digester</p>
-<p>3. Allow microbial breakdown</p>
-<p>4. Collect digestate</p>
-<p><b>Safety:</b> Keep sealed, ensure ventilation, wear gloves.</p>
-</div>
-</section>
-
-<!-- IMPACT -->
-<section id="impact">
-<h2>Future Impact</h2>
-<div class="card">
-<p>Scalable for households and communities.</p>
-<p>Reduces methane emissions significantly.</p>
-<p>Future expansion: Biochar integration and community digesters.</p>
-</div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-<h2>Our Team</h2>
-<div class="card">
-<p>Project Lead: Your Name</p>
-<p>Research & Design: Partner Name</p>
-<p>School: Your School</p>
-<p>Email: your@email.com</p>
-</div>
+        <div id="successMsg" style="display: none; padding: 40px; text-align: center;">
+            <div style="font-size: 3rem; margin-bottom: 10px;">🧪</div>
+            <h3 style="color: var(--lavender);">Transmission Received!</h3>
+            <p>BioBreakers will analyze your data shortly.</p>
+        </div>
+    </div>
 </section>
 
 <footer>
-© 2026 NutriCycle | Sustainable Innovation
+    © 2026 BioBreakers Team | Sustainable Engineering Project
 </footer>
+
+<script>
+    let isSimulating = false;
+    let simInterval;
+
+    const loadInput = document.getElementById('load');
+    const loadDisplay = document.getElementById('loadDisplay');
+
+    loadInput.oninput = () => { 
+        loadDisplay.innerText = `Current Load: ${loadInput.value}kg`; 
+        document.getElementById('f').innerText = (loadInput.value * 0.42).toFixed(2);
+        document.getElementById('c').innerText = (loadInput.value * 2.5).toFixed(1);
+    };
+
+    function toggleSim() {
+        isSimulating = !isSimulating;
+        const btn = document.getElementById('simBtn');
+        const status = document.getElementById('simStatus');
+
+        if(isSimulating) {
+            btn.innerText = "Vent System (Stop)";
+            btn.style.background = "#ff4444";
+            status.innerText = "Status: Digestion Active...";
+            startData();
+        } else {
+            btn.innerText = "Initialize Digestion";
+            btn.style.background = "var(--lavender)";
+            status.innerText = "Status: System Idle";
+            clearInterval(simInterval);
+        }
+    }
+
+    function startData() {
+        simInterval = setInterval(() => {
+            let ph = (6.4 + Math.random() * 1.4).toFixed(1);
+            let temp = (34 + Math.random() * 4).toFixed(1);
+            let psi = (1.1 + Math.random() * 0.9).toFixed(2);
+
+            document.getElementById('phDisplay').innerText = ph;
+            document.getElementById('tempDisplay').innerText = temp + "°C";
+            document.getElementById('psiDisplay').innerText = psi + " PSI";
+            
+            if(psi > 1.8) document.getElementById('psiDisplay').style.color = "#ff4444";
+            else document.getElementById('psiDisplay').style.color = "white";
+        }, 1000);
+    }
+
+    function handleContact(event) {
+        event.preventDefault();
+        document.getElementById('contactForm').style.display = 'none';
+        document.getElementById('successMsg').style.display = 'block';
+    }
+</script>
 
 </body>
 </html>
